@@ -1,0 +1,210 @@
+{
+  "interactionModel": {
+    "languageModel": {
+      "invocationName": "quiz bowl reader",
+      "intents": [
+        {
+          "name": "AMAZON.CancelIntent",
+          "samples": [
+            "cancel"
+          ]
+        },
+        {
+          "name": "AMAZON.HelpIntent",
+          "samples": [
+            "help"
+          ]
+        },
+        {
+          "name": "AMAZON.StopIntent",
+          "samples": [
+            "exit"
+          ]
+        },
+        {
+          "name": "AMAZON.NavigateHomeIntent",
+          "samples": []
+        },
+        {
+          "name": "askQuestion",
+          "slots": [],
+          "samples": [
+            "next question"
+          ]
+        },
+        {
+          "name": "addCategory",
+          "slots": [
+            {
+              "name": "categoryOfQuestions",
+              "type": "questionType"
+            }
+          ],
+          "samples": [
+            "add category {categoryOfQuestions}"
+          ]
+        },
+        {
+          "name": "goToAnswer",
+          "slots": [],
+          "samples": [
+            "what is the answer"
+          ]
+        },
+        {
+          "name": "setDifficulty",
+          "slots": [
+            {
+              "name": "setDifficultyTypes",
+              "type": "difficulties"
+            }
+          ],
+          "samples": [
+            "set difficulty to {setDifficultyTypes}"
+          ]
+        },
+        {
+          "name": "startSession",
+          "slots": [],
+          "samples": [
+            "start session"
+          ]
+        }
+      ],
+      "types": [
+        {
+          "values": [
+            {
+              "id": "20",
+              "name": {
+                "value": "geography"
+              }
+            },
+            {
+              "id": "22",
+              "name": {
+                "value": "social sciences"
+              }
+            },
+            {
+              "id": "19",
+              "name": {
+                "value": "religion"
+              }
+            },
+            {
+              "id": "25",
+              "name": {
+                "value": "philosophy"
+              }
+            },
+            {
+              "id": "17",
+              "name": {
+                "value": "science"
+              }
+            },
+            {
+              "id": "15",
+              "name": {
+                "value": "lit",
+                "synonyms": [
+                  "literature"
+                ]
+              }
+            },
+            {
+              "id": "16",
+              "name": {
+                "value": "trash"
+              }
+            },
+            {
+              "id": "21",
+              "name": {
+                "value": "art",
+                "synonyms": [
+                  "fine arts"
+                ]
+              }
+            },
+            {
+              "id": "18",
+              "name": {
+                "value": "history"
+              }
+            },
+            {
+              "id": "14",
+              "name": {
+                "value": "myth",
+                "synonyms": [
+                  "mythology"
+                ]
+              }
+            }
+          ],
+          "name": "questionType"
+        },
+        {
+          "values": [
+            {
+              "id": "regular_college",
+              "name": {
+                "value": "regular college",
+                "synonyms": [
+                  "regs",
+                  "regular",
+                  "medium college"
+                ]
+              }
+            },
+            {
+              "id": "easy_college",
+              "name": {
+                "value": "easy college",
+                "synonyms": [
+                  "easy"
+                ]
+              }
+            }
+          ],
+          "name": "difficulties"
+        }
+      ]
+    },
+    "dialog": {
+      "intents": [
+        {
+          "name": "addCategory",
+          "confirmationRequired": false,
+          "prompts": {},
+          "slots": [
+            {
+              "name": "categoryOfQuestions",
+              "type": "questionType",
+              "elicitationRequired": true,
+              "confirmationRequired": false,
+              "prompts": {
+                "elicitation": "Elicit.Slot.202431059257.101718442384"
+              }
+            }
+          ]
+        }
+      ],
+      "delegationStrategy": "ALWAYS"
+    },
+    "prompts": [
+      {
+        "id": "Elicit.Slot.202431059257.101718442384",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "say a category nerd"
+          }
+        ]
+      }
+    ]
+  },
+  "version": "9"
+}

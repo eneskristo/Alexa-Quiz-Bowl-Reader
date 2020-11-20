@@ -1,0 +1,48 @@
+{
+  "manifest": {
+    "publishingInformation": {
+      "locales": {
+        "en-US": {
+          "summary": "Read quiz bowl questions",
+          "examplePhrases": [
+            "Alexa quiz bowl reader",
+            "Alexa next question",
+            "Alexa what is the answer"
+          ],
+          "keywords": [],
+          "name": "Quizbowl reader",
+          "description": "Read quiz bowl questions from the QuizDB API",
+          "smallIconUri": "file://assets/images/en-US_smallIconUri.png",
+          "largeIconUri": "file://assets/images/en-US_largeIconUri.png"
+        }
+      },
+      "automaticDistribution": {
+        "isActive": false
+      },
+      "isAvailableWorldwide": true,
+      "testingInstructions": "Read:\n\nAlexa quiz bowl reader\nAlexa add category myth\nAlexa set difficulty to east\nAlexa session start\nAlexa next question\nAlexa what is the answer\nAlexa next question\nAlexa what is the answe",
+      "category": "KNOWLEDGE_AND_TRIVIA",
+      "distributionMode": "PUBLIC",
+      "distributionCountries": []
+    },
+    "apis": {
+      "custom": {
+        "endpoint": {
+          "uri": "arn:aws:lambda:us-east-1:941278238089:function:c2476f35-8b77-4bf1-9b25-5220aea1853b:Release_0"
+        },
+        "interfaces": []
+      }
+    },
+    "manifestVersion": "1.0",
+    "privacyAndCompliance": {
+      "allowsPurchases": false,
+      "locales": {
+        "en-US": {}
+      },
+      "containsAds": false,
+      "isExportCompliant": true,
+      "isChildDirected": false,
+      "usesPersonalInfo": false
+    }
+  }
+}
