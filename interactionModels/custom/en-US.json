@@ -29,6 +29,8 @@
           "name": "askQuestion",
           "slots": [],
           "samples": [
+            "next tossup",
+            "next",
             "next question"
           ]
         },
@@ -41,6 +43,7 @@
             }
           ],
           "samples": [
+            "set category to {categoryOfQuestions}",
             "add category {categoryOfQuestions}"
           ]
         },
@@ -60,6 +63,7 @@
             }
           ],
           "samples": [
+            "set lever to {setDifficultyTypes}",
             "set difficulty to {setDifficultyTypes}"
           ]
         },
@@ -67,7 +71,15 @@
           "name": "startSession",
           "slots": [],
           "samples": [
+            "start round",
             "start session"
+          ]
+        },
+        {
+          "name": "buzz",
+          "slots": [],
+          "samples": [
+            "buzz"
           ]
         }
       ],
@@ -206,5 +218,5 @@
       }
     ]
   },
-  "version": "9"
+  "version": "10"
 }

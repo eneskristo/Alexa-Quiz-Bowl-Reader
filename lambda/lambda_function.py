@@ -21,6 +21,7 @@ from random import randint
 import urllib.request
 import requests
 import random
+import time
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
@@ -82,6 +83,25 @@ class HelpIntentHandler(AbstractRequestHandler):
                 .response
         )
 
+class BuzzIntentHandler(AbstractRequestHandler):
+    #Handler for Help Intent.
+    def can_handle(self, handler_input):
+        # type: (HandlerInput) -> bool
+        return ask_utils.is_intent_name("buzz")(handler_input)
+
+    def handle(self, handler_input):
+        # type: (HandlerInput) -> Response
+        time.sleep(5)
+        attr = handler_input.attributes_manager.session_attributes
+        speak_output = attr['quiz'][attr['number']][1]
+        
+        return (
+            handler_input.response_builder
+                .speak(speak_output)
+                .ask(speak_output)
+                .response
+        )
+
 class SetDifficultyIntentHandler(AbstractRequestHandler):
     #Handler for Help Intent.
     def can_handle(self, handler_input):
@@ -114,11 +134,11 @@ class SessionStartHandler(AbstractRequestHandler):
         r = requests.get(url)
         
         helper = r.json()['data']['tossups']
-        
-        toShuffle = [[helper[i]['text'],helper[i]['answer']] for i in range(0,25)]
+        nrOfTossups = r.json()['data']['num_tossups_shown']
+        toShuffle = [[helper[i]['text'],helper[i]['answer']] for i in random.sample(range(nrOfTossups), 100)]
         random.shuffle(toShuffle)
         attr["quiz"] = toShuffle
-        attr["number"] = 0
+        attr["number"] = -1
         speak_output = "Session Ready"
 
         return (
@@ -137,6 +157,7 @@ class AskQuestionIntentHandler(AbstractRequestHandler):
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
         attr = handler_input.attributes_manager.session_attributes
+        attr['number'] = attr['number'] + 1
         question = attr['quiz'][attr['number']][0]
         speak_output = question
         return (
@@ -177,7 +198,6 @@ class GoToAnswerIntentHandler(AbstractRequestHandler):
         
         attr = handler_input.attributes_manager.session_attributes
         speak_output = attr['quiz'][attr['number']][1]
-        attr['number'] += 1
         return (
             handler_input.response_builder
                 .speak(speak_output)
@@ -275,6 +295,7 @@ sb.add_request_handler(SetCategoryIntentHandler())
 sb.add_request_handler(AskQuestionIntentHandler())
 sb.add_request_handler(SessionStartHandler())
 sb.add_request_handler(GoToAnswerIntentHandler())
+sb.add_request_handler(BuzzIntentHandler())
 sb.add_request_handler(HelpIntentHandler())
 sb.add_request_handler(CancelOrStopIntentHandler())
 sb.add_request_handler(SessionEndedRequestHandler())
